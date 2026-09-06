@@ -1,5 +1,7 @@
 # Y4M Converter
 
+[![CI](https://github.com/d3v4shish/Y4MConverter/actions/workflows/ci.yml/badge.svg)](https://github.com/d3v4shish/Y4MConverter/actions/workflows/ci.yml)
+
 A PyQt6 desktop app for creating Chromium-compatible `.y4m` fake-camera video
 from an existing video or a live Linux webcam.
 
@@ -12,6 +14,16 @@ space, and asks before creating large or unknown-size outputs. Conversions are
 written to a private staging file and atomically published only after ffmpeg
 succeeds and the Y4M output is validated. A failure or cancellation therefore
 does not overwrite an existing destination.
+
+## Features
+
+- Convert common video formats to YUV4MPEG2 with configurable dimensions, FPS,
+  and duration.
+- Scale and letterbox source video without stretching it.
+- Record directly from Linux V4L2 webcam devices.
+- Estimate uncompressed output size and verify available disk space.
+- Preserve an existing destination when conversion fails or is cancelled.
+- Produce `yuv420p` output accepted by Chromium's fake video capture flag.
 
 ## Requirements
 
@@ -26,6 +38,8 @@ On Debian or Ubuntu, ffmpeg is available from the `ffmpeg` package and
 ## Install and run
 
 ```bash
+git clone https://github.com/d3v4shish/Y4MConverter.git
+cd Y4MConverter
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install --upgrade pip
